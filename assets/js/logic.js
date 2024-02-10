@@ -13,6 +13,8 @@ let submitBtn = document.getElementById("submit");
 let score = 0;
 let questionNumber = 0;
 
+startBtn.addEventListener("click", begin)
+
 function begin(event){
     event.stopPropagation()
     time.innerHTML = 20;
