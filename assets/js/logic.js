@@ -24,8 +24,15 @@ function begin(event){
     displayQuestions(); //begins displaying questions
 }
 
+// the timer function controls ongoing gameplay, if time drops below 0 the end function is called
 function timer(){
-
+    let timerInterval = setInterval(function(){
+    time.innerHTML--;
+        if (time.innerHTML <= 0){              
+            clearInterval(timerInterval)
+            end()         
+        }
+    },1000)
 }
 
 function displayQuestions(){
@@ -37,5 +44,5 @@ function end(){
 }
 
 function highScores(){
-    
+
 }
