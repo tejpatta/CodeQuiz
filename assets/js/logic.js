@@ -13,3 +13,29 @@ let submitBtn = document.getElementById("submit");
 let score = 0;
 let questionNumber = 0;
 
+function begin(event){
+    event.stopPropagation()
+    time.innerHTML = 20;
+    if (startScreen.className === "start" && questionScreen.className === "hide"){
+        startScreen.className = "hide";
+        questionScreen.className = "start";
+        }
+    timer() //starts timer
+    displayQuestions(); //begins displaying questions
+}
+
+function timer(){
+
+}
+
+function displayQuestions(){
+
+}
+
+function end(){
+
+}
+
+function highScores(){
+    
+}
