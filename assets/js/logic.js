@@ -5,7 +5,7 @@ let questionScreen = document.getElementById("questions");
 let questionTitle = document.getElementById("question-title")
 let questionAnswer = document.getElementById("choices")
 let correctFx = new Audio("assets/sfx/correct.wav");
-let IncorrectFx = new Audio("assets/sfx/incorrect.wav");
+let incorrectFx = new Audio("assets/sfx/incorrect.wav");
 let feedbackScreen = document.getElementById("feedback");
 let endScreen = document.getElementById("end-screen");
 let finalScore = document.getElementById("final-score");
@@ -42,14 +42,44 @@ function displayQuestions(){
         feedbackScreen.classList.add("hide")
         questionAnswer.innerHTML = ""; //clear previous choices
     }
-    questionTitle.textContent = questions[questionNumber].title;
-    questions[questionNumber].answers.forEach(answer => { 
+    questionTitle.textContent = questions[questionNum].title;
+    questions[questionNum].answers.forEach(answer => { 
         let btn = document.createElement("button");
         btn.innerHTML = answer;
         btn.setAttribute("class", "choice button")
         btn.addEventListener("click", () => {chooseAnswer(answer)}) 
         questionAnswer.appendChild(btn);
         });
+}
+
+function selectAns(userChoice){
+    if(userChoice === questions[questionNumber].correct){
+        feedbackScreen.classList.remove("hide");
+        feedbackScreen.textContent = "Correct!"; //shows feedback
+        correctFx.play();  
+        correctFx.currentTime=0; 
+        score ++ //add points for each correct answer 
+        
+        
+    }else {
+        feedbackScreen.classList.remove("hide");
+        feedbackScreen.textContent = "Wrong!" ; //shows feedback
+        incorrectFx.play();
+        incorrectFx.currentTime=0; 
+        if (time.innerHTML > 5){
+            time.innerHTML-=10; //minus 10s for each wrong answer
+           
+        } else {
+            time.innerHTML = 0
+        }
+    }
+
+    questionNum = getRandom(questions.length) //gets index number of next random question
+    setTimeout(startQuestions,500) // displays feedback for 0.5s
+}
+
+function getRandom(max){
+    return Math.floor(Math.random()*max)
 }
 
 function end(){
