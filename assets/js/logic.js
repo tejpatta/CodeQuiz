@@ -98,5 +98,11 @@ function end(){
 
 
 function highScores(){
+    let initials = document.getElementById("initials").value;
+    localStorage.setItem(initials, JSON.stringify(score))
+    if(endScreen.className = "start"){
+        endScreen.className = "hide"
+        window.location.href = "highscores.html"
+    }
 
 }
