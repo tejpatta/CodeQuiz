@@ -83,8 +83,19 @@ function getRandom(max){
 }
 
 function end(){
-
+    time.innerHTML = 0
+    if(questionScreen.className === "start"){
+        questionScreen.className = "hide";
+        feedbackScreen.classList.add("hide");
+        endScreen.className = "start"
+        finalScore.textContent = score
+    }
+    submitBtn.addEventListener("submit", function(sub){
+        sub.preventDefault();
+    })
+    submitBtn.addEventListener("click", ()=>highScores(score))
 }
+
 
 function highScores(){
 
