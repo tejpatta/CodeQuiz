@@ -38,7 +38,18 @@ function timer(){
 }
 
 function displayQuestions(){
-
+    if (feedbackScreen.classList.contains("feedback")){
+        feedbackScreen.classList.add("hide")
+        questionAnswer.innerHTML = ""; //clear previous choices
+    }
+    questionTitle.textContent = questions[questionNumber].title;
+    questions[questionNumber].answers.forEach(answer => { 
+        let btn = document.createElement("button");
+        btn.innerHTML = answer;
+        btn.setAttribute("class", "choice button")
+        btn.addEventListener("click", () => {chooseAnswer(answer)}) 
+        questionAnswer.appendChild(btn);
+        });
 }
 
 function end(){
