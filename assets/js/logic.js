@@ -11,7 +11,7 @@ let endScreen = document.getElementById("end-screen");
 let finalScore = document.getElementById("final-score");
 let submitBtn = document.getElementById("submit");
 let score = 0;
-let questionNumber = 0;
+let questionNum = 0;
 
 startBtn.addEventListener("click", begin)
 
@@ -38,35 +38,34 @@ function timer(){
 }
 
 function displayQuestions(){
-    if (feedbackScreen.classList.contains("feedback")){
         feedbackScreen.classList.add("hide")
         questionAnswer.innerHTML = ""; //clear previous choices
-    }
+        questionNum = getRandom(questions.length) //gets index number of next random question
     questionTitle.textContent = questions[questionNum].title;
     questions[questionNum].answers.forEach(answer => { 
         let btn = document.createElement("button");
         btn.innerHTML = answer;
         btn.setAttribute("class", "choice button")
-        btn.addEventListener("click", () => {chooseAnswer(answer)}) 
+        btn.addEventListener("click", () => {selectAns(answer)}) 
         questionAnswer.appendChild(btn);
         });
 }
 
 function selectAns(userChoice){
-    if(userChoice === questions[questionNumber].correct){
-        feedbackScreen.classList.remove("hide");
+    if(userChoice === questions[questionNum].correct){
+        feedbackScreen.removeClass("hide");
         feedbackScreen.textContent = "Correct!"; //shows feedback
         correctFx.play();  
         correctFx.currentTime=0; 
-        score ++ //add points for each correct answer 
+        score ++ ; //add points for each correct answer 
         
         
     }else {
-        feedbackScreen.classList.remove("hide");
+        feedbackScreen.removeClass("hide");
         feedbackScreen.textContent = "Wrong!" ; //shows feedback
         incorrectFx.play();
         incorrectFx.currentTime=0; 
-        if (time.innerHTML > 5){
+        if (time.innerHTML > 10){
             time.innerHTML-=10; //minus 10s for each wrong answer
            
         } else {
@@ -74,8 +73,7 @@ function selectAns(userChoice){
         }
     }
 
-    questionNum = getRandom(questions.length) //gets index number of next random question
-    setTimeout(startQuestions,500) // displays feedback for 0.5s
+    setTimeout(displayQuestions,500) // displays feedback for 0.5s
 }
 
 function getRandom(max){
@@ -98,7 +96,7 @@ function end(){
 
 
 function highScores(){
-    let initials = document.getElementById("initials").value;
+      let initials = document.getElementById("initials").value;
     localStorage.setItem(initials, JSON.stringify(score))
     if(endScreen.className = "start"){
         endScreen.className = "hide"
