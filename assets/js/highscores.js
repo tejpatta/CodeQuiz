@@ -17,7 +17,7 @@ getScores();
 
 function getScores(){ 
     highscoresDisplay.innerHTML = "";
-    for (var i=0; i<allScores.length; i++){
+    for (var i=0; i<prevScores.length; i++){
         var li = document.createElement("li");
         li.textContent = prevScores[i]
         highscoresDisplay.appendChild(li)

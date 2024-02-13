@@ -38,8 +38,9 @@ function timer(){
 }
 
 function displayQuestions(){
+      if (feedbackScreen.classList.contains("feedback")){
         feedbackScreen.classList.add("hide")
-        questionAnswer.innerHTML = ""; //clear previous choices
+        questionAnswer.innerHTML = ""; }//clear previous choices
         questionNum = getRandom(questions.length) //gets index number of next random question
     questionTitle.textContent = questions[questionNum].title;
     questions[questionNum].answers.forEach(answer => { 
@@ -53,7 +54,7 @@ function displayQuestions(){
 
 function selectAns(userChoice){
     if(userChoice === questions[questionNum].correct){
-        feedbackScreen.removeClass("hide");
+        feedbackScreen.classList.remove("hide");
         feedbackScreen.textContent = "Correct!"; //shows feedback
         correctFx.play();  
         correctFx.currentTime=0; 
@@ -61,7 +62,7 @@ function selectAns(userChoice){
         
         
     }else {
-        feedbackScreen.removeClass("hide");
+        feedbackScreen.classList.remove("hide");
         feedbackScreen.textContent = "Wrong!" ; //shows feedback
         incorrectFx.play();
         incorrectFx.currentTime=0; 
@@ -97,7 +98,7 @@ function end(){
 
 function highScores(){
       let initials = document.getElementById("initials").value;
-    localStorage.setItem(initials, JSON.stringify(score))
+    localStorage.setItem(initials, score)
     if(endScreen.className = "start"){
         endScreen.className = "hide"
         window.location.href = "highscores.html"
