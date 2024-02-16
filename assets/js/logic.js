@@ -34,7 +34,7 @@ function timer(){
             clearInterval(timerInterval)
             end()         
         }
-    },4000)
+    },1000)
 }
 
 function displayQuestions(){
