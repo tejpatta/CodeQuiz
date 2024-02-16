@@ -1,5 +1,6 @@
 # CodeQuiz
 ## Description
+![image](https://github.com/tejpatta/CodeQuiz/assets/147752590/67579230-90c9-4ec4-b773-01640b751dd9)
 
 This webpage was created in response to a  boot camp assignment to apply skills learnt in JavaScript. This application is timed coding quiz with multiple-choice questions. 
 
