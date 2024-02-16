@@ -17,7 +17,7 @@ startBtn.addEventListener("click", begin)
 
 function begin(event){
     event.stopPropagation()
-    time.innerHTML = 20;
+    time.innerHTML = 40;
     if (startScreen.className === "start" && questionScreen.className === "hide"){
         startScreen.className = "hide";
         questionScreen.className = "start";
@@ -34,7 +34,7 @@ function timer(){
             clearInterval(timerInterval)
             end()         
         }
-    },4000)
+    },1000)
 }
 
 function displayQuestions(){
